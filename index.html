@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Dear Ahda 💗</title>
+    <!-- Google Fonts import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           1. CORE STYLES & ATMOSPHERE
+           ========================================== */
+        :root {
+            --bg-deep: #080204;
+            --gold-primary: #dfb753;
+            --gold-light: #f7e7b4;
+            --gold-dark: #99731d;
+            --parchment-bg: #FAF6ED;
+            --ink-color: #1c100b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #24030a 0%, #0c0104 70%, #030001 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Ambient Glow & Floating Particles */
+        .ambient-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, rgba(223, 183, 83, 0.12) 0%, rgba(140, 10, 26, 0.2) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .stage-container {
+            width: 100%;
+            max-width: 800px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            z-index: 5;
+            position: relative;
+        }
+
+        /* ==========================================
+           2. HEADER & INTRO
+           ========================================== */
+        .header-title {
+            text-align: center;
+            margin-bottom: 25px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .header-title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            color: var(--gold-light);
+            text-shadow: 0 0 15px rgba(223, 183, 83, 0.5), 0 2px 5px rgba(0,0,0,0.9);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .header-title p {
+            font-size: clamp(0.9rem, 3vw, 1.15rem);
+            color: #eabec6;
+            font-style: italic;
+            letter-spacing: 1.5px;
+        }
+
+        /* ==========================================
+           3. BRAND NEW HIGH-REALISM RED VELVET ENVELOPE DESIGN
+           ========================================== */
+        .scene {
+            width: clamp(300px, 88vw, 450px);
+            height: clamp(210px, 62vw, 310px);
+            perspective: 1400px;
+            margin: 10px 0 30px;
+            position: relative;
+        }
+
+        .envelope-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            cursor: pointer;
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-6px) rotateX(4deg);
+        }
+
+        /* Deep Rich Velvet Texture Body */
+        .envelope-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(255, 160, 180, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 120, 140, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 90%, rgba(0, 0, 0, 0.85) 0%, transparent 65%),
+                linear-gradient(135deg, #a3081e 0%, #52000a 45%, #7e0416 75%, #3b0006 100%);
+            border-radius: 14px;
+            box-shadow: 
+                0 35px 70px rgba(0,0,0,0.95), 
+                0 0 50px rgba(163, 8, 30, 0.65),
+                inset 0 0 35px rgba(0,0,0,0.95),
+                inset 0 0 6px rgba(255, 215, 225, 0.45);
+            border: 3px solid var(--gold-primary);
+            overflow: hidden;
+        }
+
+        /* Velvet Sheen & Fiber Micro Grain Overlay */
+        .envelope-body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        /* Left & Right Flaps with Deep Velvet Shading */
+        .flap-left {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-top: clamp(105px, 31vw, 155px) solid transparent;
+            border-bottom: clamp(105px, 31vw, 155px) solid transparent;
+            border-left: clamp(160px, 47vw, 240px) solid #5e020e;
+            z-index: 3;
+            filter: drop-shadow(6px 0 10px rgba(0,0,0,0.8));
+        }
+
+        .flap-right {
+            position: absolute;
+            top: 0; right: 0;
+            width: 0; height: 0;
+            border-top: clamp(105px, 31vw, 155px) solid transparent;
+            border-bottom: clamp(105px, 31vw, 155px) solid transparent;
+            border-right: clamp(160px, 47vw, 240px) solid #4d010b;
+            z-index: 3;
+            filter: drop-shadow(-6px 0 10px rgba(0,0,0,0.8));
+        }
+
+        /* Bottom Velvet Fold Flap */
+        .flap-bottom {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 0;
+            border-left: clamp(150px, 44vw, 225px) solid transparent;
+            border-right: clamp(150px, 44vw, 225px) solid transparent;
+            border-bottom: clamp(115px, 34vw, 170px) solid #7c0415;
+            z-index: 4;
+            filter: drop-shadow(0 -6px 12px rgba(0,0,0,0.85));
+        }
+
+        /* Top Triangular Flap with Metallic Gold Lining */
+        .flap-top {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-left: clamp(150px, 44vw, 225px) solid transparent;
+            border-right: clamp(150px, 44vw, 225px) solid transparent;
+            border-top: clamp(125px, 37vw, 180px) solid #a3081e;
+            transform-origin: top center;
+            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s;
+            z-index: 6;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.85));
+        }
+
+        .flap-top::after {
+            content: "";
+            position: absolute;
+            top: calc(-1 * clamp(125px, 37vw, 180px));
+            left: calc(-1 * clamp(150px, 44vw, 225px));
+            width: 0; height: 0;
+            border-left: clamp(150px, 44vw, 225px) solid transparent;
+            border-right: clamp(150px, 44vw, 225px) solid transparent;
+            border-top: clamp(125px, 37vw, 180px) solid rgba(223, 183, 83, 0.55);
+            transform: scale(0.97);
+        }
+
+        /* Metallic Gold Wax Seal with Heart & "OPEN ME" */
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            width: 76px;
+            height: 76px;
+            background: radial-gradient(circle at 30% 30%, #fff1c4, #dfb753 55%, #7a5605 100%);
+            border-radius: 50%;
+            z-index: 7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.9), inset 0 2px 6px rgba(255,255,255,0.95), inset 0 -4px 8px rgba(0,0,0,0.7);
+            border: 2px dashed #99731d;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .wax-seal .heart-icon {
+            font-size: 20px;
+            line-height: 1;
+            margin-bottom: 2px;
+            animation: pulse-heart 1.6s infinite;
+        }
+
+        .wax-seal .open-text {
+            font-family: 'Cinzel', serif;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #2b1800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+        }
+
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.22); }
+        }
+
+        .env-sticker {
+            position: absolute;
+            z-index: 8;
+            font-size: 28px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+            pointer-events: none;
+        }
+        .st-1 { bottom: -12px; left: -10px; transform: rotate(-15deg); }
+        .st-2 { top: -14px; right: -8px; transform: rotate(20deg); }
+        .st-3 { bottom: 12px; right: -15px; font-size: 24px; }
+
+        .parchment-preview {
+            position: absolute;
+            bottom: 12px;
+            left: 5%;
+            width: 90%;
+            height: 82%;
+            background: var(--parchment-bg);
+            border-radius: 4px;
+            z-index: 2;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 12px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            opacity: 0.95;
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, #dfb753, #99731d);
+            color: #120205;
+            border: 1.5px solid #fff5cc;
+            padding: 15px 40px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(223, 183, 83, 0.45), 0 2px 5px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-open:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 30px rgba(223, 183, 83, 0.65);
+            background: linear-gradient(135deg, #f7e7b4, #dfb753);
+        }
+
+        /* Top Bar Controls */
+        .letter-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .letter-controls.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .btn-ctrl {
+            background: rgba(20, 2, 6, 0.9);
+            color: var(--gold-light);
+            border: 1px solid var(--gold-primary);
+            padding: 9px 18px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        .btn-ctrl:hover {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        /* ==========================================
+           4. PARCHMENT & UNRESTRICTED SCROLLABLE TYPEWRITER
+           ========================================== */
+        .letter-container {
+            display: none;
+            width: 100%;
+            max-width: 740px;
+            margin: 20px auto;
+            position: relative;
+            z-index: 10;
+            perspective: 2000px;
+        }
+
+        .letter-container.active {
+            display: block;
+        }
+
+        .parchment-sheet {
+            background: var(--parchment-bg);
+            background-image: 
+                radial-gradient(#ebdcb9 1px, transparent 0),
+                radial-gradient(#ebdcb9 1px, var(--parchment-bg) 0);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: var(--ink-color);
+            padding: clamp(28px, 6vw, 60px) clamp(22px, 5vw, 50px);
+            border-radius: 4px;
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.8),
+                0 0 90px rgba(223, 183, 83, 0.15),
+                inset 0 0 50px rgba(185, 145, 95, 0.25);
+            position: relative;
+            border: 1px solid #dcd0b3;
+            overflow: hidden;
+            
+            transform-origin: top center;
+            transform: rotateX(-90deg) translateY(-50px) scale(0.9);
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+        }
+
+        .parchment-sheet.unfolded {
+            transform: rotateX(0deg) translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .parchment-sheet::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            box-shadow: inset 0 0 35px rgba(130, 85, 35, 0.2);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .decor-corner {
+            position: absolute;
+            font-size: 22px;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .top-l { top: 12px; left: 15px; }
+        .top-r { top: 12px; right: 15px; }
+        .bot-l { bottom: 12px; left: 15px; }
+        .bot-r { bottom: 12px; right: 15px; }
+
+        .margin-decor {
+            position: absolute;
+            left: 10px;
+            top: 20%;
+            bottom: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            font-size: 15px;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(153, 115, 29, 0.35);
+        }
+
+        .letter-header h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.4rem, 6.5vw, 3.5rem);
+            color: #6e0311;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .letter-body {
+            font-family: 'Lora', serif;
+            font-size: clamp(1.1rem, 3.6vw, 1.35rem);
+            line-height: 1.85;
+            color: #22120a;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 3;
+            min-height: 1.8em;
+        }
+
+        .typing-cursor::after {
+            content: "|";
+            display: inline-block;
+            color: #8c0a1a;
+            font-weight: bold;
+            animation: blink 0.5s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .love-declaration {
+            text-align: center;
+            margin: 22px 0;
+            padding: 12px;
+            background: rgba(140, 10, 26, 0.05);
+            border-radius: 8px;
+            border-left: 3.5px solid #8c0a1a;
+            border-right: 3.5px solid #8c0a1a;
+        }
+
+        .love-declaration p {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.8rem, 5.5vw, 2.4rem);
+            color: #8c0a1a;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .hadith-quote {
+            background: rgba(223, 183, 83, 0.15);
+            border-radius: 10px;
+            padding: 16px 22px;
+            margin: 24px 0;
+            border: 1px dashed var(--gold-dark);
+            text-align: center;
+            font-style: italic;
+            color: #3b2200;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .divider-ornament {
+            text-align: center;
+            margin: 25px 0;
+            color: var(--gold-dark);
+            font-size: 18px;
+            letter-spacing: 6px;
+            opacity: 0.85;
+        }
+
+        .letter-footer {
+            margin-top: 38px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(153, 115, 29, 0.35);
+            text-align: center;
+        }
+
+        .closing-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 5.5vw, 2.8rem);
+            color: #6e0311;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .signature-flourish {
+            font-size: 24px;
+            color: var(--gold-dark);
+        }
+
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99;
+            font-size: 18px;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stage-container { padding: 10px 8px; }
+            .parchment-sheet { padding: 22px 16px; }
+            .margin-decor { display: none; }
+            .btn-ctrl { padding: 6px 12px; font-size: 0.78rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Top Controls -->
+    <div class="letter-controls" id="letterControls">
+        <button class="btn-ctrl" id="btnSkip" onclick="skipToFullLetter()">⚡ Read Full Letter</button>
+        <button class="btn-ctrl" id="btnReplay" onclick="resetEnvelope()">🔄 Replay Envelope</button>
+    </div>
+
+    <div class="stage-container">
+
+        <!-- 1. ENVELOPE SECTION -->
+        <div id="envelopeSection" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="header-title" id="mainHeader">
+                <h1>To My Dear Ahda 💗</h1>
+                <p>A little piece of my heart 💌</p>
+            </div>
+
+            <!-- Redesigned High-Realism Red Velvet Envelope -->
+            <div class="scene" onclick="openEnvelope()">
+                <div class="envelope-wrapper" id="envelopeWrapper">
+                    <div class="envelope-body"></div>
+                    <div class="parchment-preview" id="parchmentPreview">
+                        <span style="color: #805c0d; font-family: 'Dancing Script', cursive; font-size: 22px; font-weight: 700;">To Ahda...</span>
+                    </div>
+                    <div class="flap-left"></div>
+                    <div class="flap-right"></div>
+                    <div class="flap-bottom"></div>
+                    <div class="flap-top" id="flapTop"></div>
+                    
+                    <!-- Metallic Gold Wax Seal with "OPEN ME" -->
+                    <div class="wax-seal" id="waxSeal">
+                        <span class="heart-icon">💗</span>
+                        <span class="open-text">OPEN ME</span>
+                    </div>
+
+                    <div class="env-sticker st-1">🌹</div>
+                    <div class="env-sticker st-2">✨</div>
+                    <div class="env-sticker st-3">🧸</div>
+                </div>
+            </div>
+
+            <button class="btn-open" id="btnOpen" onclick="openEnvelope()">
+                <span>Open My Letter</span> 💌
+            </button>
+        </div>
+
+        <!-- 2. HANDWRITTEN PARCHMENT LETTER WITH FREE USER SCROLLING -->
+        <div class="letter-container" id="letterContainer">
+            <div class="parchment-sheet" id="parchmentSheet">
+                
+                <div class="decor-corner top-l">🌹</div>
+                <div class="decor-corner top-r">🌹</div>
+                <div class="decor-corner bot-l">🍃</div>
+                <div class="decor-corner bot-r">🍃</div>
+
+                <div class="margin-decor">
+                    <span>✨</span>
+                    <span>💖</span>
+                    <span>🌸</span>
+                    <span>✨</span>
+                </div>
+
+                <div class="letter-header">
+                    <h2>To My Dear Ahda 💗 🌹💌</h2>
+                </div>
+
+                <!-- Complete Original Letter Content Preserved -->
+                <div class="letter-body" id="letterBody">
+
+                    <div class="paragraph" data-text="Assalamualaikum! 🤗❤️"></div>
+
+                    <div class="paragraph" data-text="Ahda, first of all, myself Abuzar, from Chishtian, Bahawalnagar. Maine yeh message 💌 aapko kuch batane 🗣️ ke liye likha hai."></div>
+
+                    <div class="paragraph" data-text="Ahda, jab maine pehli baar aapko message kiya tha, to meri intention hargiz aapko tang karne ki nahi thi. Main aapko mazeed contact nahi karna chahta tha, but mujhe laga ke agar maine aapko nahi bataya, to saari zindagi mujhe guilt rahega. 🥹💭"></div>
+
+                    <div class="paragraph" data-text="Ahda, main aapse kuch kehna chahta tha, but my bad luck 😓💔, har baar jab main kuch kehne lagta tha, to darr jata tha ke kahin aap gussa na ho jayein. Isi liye main aapko tab yeh baat nahi bata saka. 🥀"></div>
+
+                    <div class="paragraph" data-text="Ahda, I know ke aap ek mature aur independent larki hain. But aapke dil mein kisi na kisi ke liye mohabbat zaroor hogi, aur aapko pata hoga ke woh feelings kaisi hoti hain. ❤️‍🩹"></div>
+
+                    <div class="paragraph" style="color: #8c0a1a; font-weight: 600;" data-text="👉 Ab main aapko woh batane laga hoon, jiske liye main aaj tak koshish karta raha hoon. 🥹"></div>
+
+                    <div class="paragraph" style="text-align: center; font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #8c0a1a; font-weight: 700;" data-text="So, my dear Ahda! 😘🌹"></div>
+
+                    <div class="paragraph love-declaration">
+                        <p data-text="❤️ I LOVE YOU! 🌹"></p>
+                        <p data-text="❤️ I LOVE YOU! 🌹"></p>
+                        <p data-text="❤️ I LOVE YOU! 🌹"></p>
+                    </div>
+
+                    <div class="paragraph" data-text="Ahda, jab main chhota tha, tab se main aapko jaanta hoon, aur tab se hi mujhe aapse dil-lagi thi. 😍 Aur yahi meri sabse badi galti ban gayi ke maine aapse pyaar kiya, aur ab is galti ka azala nahi ho sakta. 💔🥀"></div>
+
+                    <div class="paragraph" data-text="Ahda, mujhe nahi pata ke aapke dil ❤️ mein mere liye kya hai, but agar aap mujhse poochhein, to Ahda, aap meri zindagi hain. 🥹❤️🫂 Aur yeh main jhoot nahi bol raha. I really love you! 💕"></div>
+
+                    <div class="paragraph" data-text="Main yeh nahi chahta ke aap bhi mujhse mohabbat karein ya mujhse baatein karein. Aapko batana mera farz tha. Aur hamare Nabi ﷺ se mansoob ek baat maine suni hai:"></div>
+
+                    <div class="paragraph hadith-quote" data-text="«🌹💗 &quot;Agar aapko kisi se mohabbat ho, to use bata do ke aapko usse mohabbat hai, taake woh kisi ghalat fehmi mein na rahe.&quot; 💗🌹»"></div>
+
+                    <div class="paragraph" data-text="Ahda, agar kisi wajah se maine aapko tang kiya ho, to uske liye I am really sorry. 🙏🏻🥺❤️‍🩹"></div>
+
+                    <div class="divider-ornament" data-text="💔🥀💔🥀💔🥀💔🥀"></div>
+
+                    <div class="paragraph" data-text="Aur doosri baat, aapke dil mein shayad yeh khayal aaye ke maine aapse kaha tha ke main apni ek cousin se shadeed mohabbat karta hoon. 💗"></div>
+
+                    <div class="paragraph" style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #8c0a1a; text-align: center; font-weight: 700;" data-text="Ahda, Khuda ki kasam, woh aap hi thi! 🥹❤️🌹 Woh aap thi, Ahda! 🫂💞"></div>
+
+                    <div class="paragraph" data-text="Main aapke siwa kisi aur larki ki taraf dekh bhi nahi sakta. ❤️‍🩹"></div>
+
+                    <div class="paragraph" data-text="Shayad message bohat lamba ho gaya hai, aur mere paas aapko kehne ke liye itna kuch hai jo main yahan poora nahi likh sakta. 🥹💌"></div>
+
+                    <div class="paragraph" style="text-align: center; font-size: 1.25rem; margin-top: 15px;" data-text="But at the end… ❤️🌹"></div>
+
+                    <div class="paragraph" style="text-align: center; font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #8c0a1a; font-weight: 700;" data-text="💖 Ahda, I LOVE YOU! 😘😘😘"></div>
+
+                    <div class="paragraph" data-text="Thanks 💕 for giving me some time. 🤗"></div>
+
+                    <div class="paragraph" style="font-size: 1.25rem; font-weight: 600; color: #5a020d;" data-text="I'm waiting for your reply. 💌❤️"></div>
+
+                </div>
+
+                <div class="letter-footer paragraph" id="letterFooter" style="display:none;">
+                    <div class="closing-text">With heartfelt feelings 💗</div>
+                    <div class="signature-flourish">🌹 ─── 💖 ─── 🌹</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let isOpened = false;
+        let animationTimers = [];
+        let typingTimeout = null;
+        let isTyping = false;
+
+        /* Particles Animation */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 20;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 0.8 + 0.3;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.color = Math.random() > 0.4 ? '#dfb753' : '#e74c3c';
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -10) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.globalAlpha = 1.0;
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor(window.innerWidth / 15), 45);
+            for (let i = 0; i < count; i++) particles.push(new Particle());
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-particle';
+            const symbols = ['💗', '🌹', '✨', '💕', '💖'];
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = Math.random() * 90 + 5 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4500);
+        }
+
+        /* Envelope Opening Sequence */
+        function openEnvelope() {
+            if (isOpened) return;
+            isOpened = true;
+
+            const waxSeal = document.getElementById('waxSeal');
+            const flapTop = document.getElementById('flapTop');
+            const parchmentPreview = document.getElementById('parchmentPreview');
+            const envelopeSection = document.getElementById('envelopeSection');
+            const letterContainer = document.getElementById('letterContainer');
+            const parchmentSheet = document.getElementById('parchmentSheet');
+            const btnOpen = document.getElementById('btnOpen');
+            const controls = document.getElementById('letterControls');
+
+            for(let i = 0; i < 12; i++) {
+                setTimeout(createFloatingHeart, i * 150);
+            }
+
+            waxSeal.style.opacity = '0';
+            waxSeal.style.transform = 'translate(-50%, -20%) scale(1.5)';
+            btnOpen.style.opacity = '0';
+            btnOpen.style.pointerEvents = 'none';
+
+            let t1 = setTimeout(() => {
+                flapTop.style.transform = 'rotateX(180deg)';
+                flapTop.style.zIndex = '1';
+            }, 400);
+
+            let t2 = setTimeout(() => {
+                parchmentPreview.style.transform = 'translateY(-120px) scale(1.05)';
+                parchmentPreview.style.zIndex = '5';
+            }, 900);
+
+            let t3 = setTimeout(() => {
+                envelopeSection.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                envelopeSection.style.opacity = '0';
+                envelopeSection.style.transform = 'scale(0.9)';
+                
+                setTimeout(() => {
+                    envelopeSection.style.display = 'none';
+                    letterContainer.classList.add('active');
+                    controls.classList.add('show');
+                    
+                    requestAnimationFrame(() => {
+                        parchmentSheet.classList.add('unfolded');
+                        startLetterTypewriter();
+                    });
+                }, 600);
+            }, 1800);
+
+            animationTimers.push(t1, t2, t3);
+        }
+
+        /* TYPEWRITER ANIMATION WITH FREE USER SCROLL CONTROL (NO FORCE SCROLL LOCK) */
+        function startLetterTypewriter() {
+            const elements = Array.from(document.querySelectorAll('[data-text]'));
+            let currentElemIndex = 0;
+            isTyping = true;
+
+            function typeElement() {
+                if (!isTyping || currentElemIndex >= elements.length) {
+                    const footer = document.getElementById('letterFooter');
+                    if (footer) footer.style.display = 'block';
+                    isTyping = false;
+                    return;
+                }
+
+                const elem = elements[currentElemIndex];
+                const fullText = elem.getAttribute('data-text');
+                
+                const characters = Array.from(fullText);
+                let charIndex = 0;
+
+                elem.classList.add('typing-cursor');
+
+                function typeChar() {
+                    if (!isTyping) return;
+
+                    if (charIndex < characters.length) {
+                        elem.textContent += characters[charIndex];
+                        charIndex++;
+
+                        // Speed: 18ms - 28ms per character
+                        const speed = Math.floor(Math.random() * 10) + 18;
+                        typingTimeout = setTimeout(typeChar, speed);
+                    } else {
+                        elem.classList.remove('typing-cursor');
+                        currentElemIndex++;
+                        
+                        if (currentElemIndex % 3 === 0) createFloatingHeart();
+                        typingTimeout = setTimeout(typeElement, 200);
+                    }
+                }
+
+                typeChar();
+            }
+
+            typeElement();
+        }
+
+        /* Instant Read / Skip Animation */
+        function skipToFullLetter() {
+            isTyping = false;
+            if (typingTimeout) clearTimeout(typingTimeout);
+            animationTimers.forEach(t => clearTimeout(t));
+
+            const envelopeSection = document.getElementById('envelopeSection');
+            const letterContainer = document.getElementById('letterContainer');
+            const parchmentSheet = document.getElementById('parchmentSheet');
+            const controls = document.getElementById('letterControls');
+            const elements = document.querySelectorAll('[data-text]');
+            const footer = document.getElementById('letterFooter');
+
+            envelopeSection.style.display = 'none';
+            letterContainer.classList.add('active');
+            parchmentSheet.classList.add('unfolded');
+            controls.classList.add('show');
+
+            elements.forEach(elem => {
+                elem.classList.remove('typing-cursor');
+                elem.textContent = elem.getAttribute('data-text');
+            });
+
+            if (footer) footer.style.display = 'block';
+
+            isOpened = true;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Replay Animation */
+        function resetEnvelope() {
+            isTyping = false;
+            if (typingTimeout) clearTimeout(typingTimeout);
+            animationTimers.forEach(t => clearTimeout(t));
+
+            const waxSeal = document.getElementById('waxSeal');
+            const flapTop = document.getElementById('flapTop');
+            const parchmentPreview = document.getElementById('parchmentPreview');
+            const envelopeSection = document.getElementById('envelopeSection');
+            const letterContainer = document.getElementById('letterContainer');
+            const parchmentSheet = document.getElementById('parchmentSheet');
+            const btnOpen = document.getElementById('btnOpen');
+            const controls = document.getElementById('letterControls');
+            const elements = document.querySelectorAll('[data-text]');
+            const footer = document.getElementById('letterFooter');
+
+            elements.forEach(elem => {
+                elem.classList.remove('typing-cursor');
+                elem.textContent = '';
+            });
+
+            if (footer) footer.style.display = 'none';
+            parchmentSheet.classList.remove('unfolded');
+
+            letterContainer.classList.remove('active');
+            controls.classList.remove('show');
+
+            envelopeSection.style.display = 'flex';
+            envelopeSection.style.opacity = '1';
+            envelopeSection.style.transform = 'none';
+
+            waxSeal.style.opacity = '1';
+            waxSeal.style.transform = 'translate(-50%, -20%) scale(1)';
+            flapTop.style.transform = 'rotateX(0deg)';
+            flapTop.style.zIndex = '6';
+            parchmentPreview.style.transform = 'none';
+            parchmentPreview.style.zIndex = '2';
+
+            btnOpen.style.opacity = '1';
+            btnOpen.style.pointerEvents = 'auto';
+
+            isOpened = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
